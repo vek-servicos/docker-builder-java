@@ -1,1 +1,1 @@
-# docker-builder-java
+# docker-builder-java:openjdk-8
