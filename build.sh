@@ -6,7 +6,7 @@ export docker_files='.'
 export docker_registry=''
 export docker_path="vekservicos"
 export docker_image="docker-builder-java"
-export docker_tag="latest"
+export docker_tag="openjdk-8"
 
 # export docker_image_full="${docker_registry}/${docker_path}/${docker_image}:${docker_tag}"
 # export docker_image_full="${docker_registry}/${docker_image}:${docker_tag}"
