@@ -1,11 +1,14 @@
-# vek_docker_image=vekservicos/docker-builder:openjdk-8
+# vek_docker_image=vekservicos/docker-builder-java:openjdk-8
 # docker build -t $vek_docker_image .
 # docker run --rm -it -v ~/.aws:/root/.aws -v ~/.ssh:/root/.ssh -v ~/.gitconfig:/root/.gitconfig -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/vek-app $vek_docker_image
 
 FROM vekservicos/docker-builder-tools:ubuntu AS builder
 
+# Update repository
+RUN apt-get update -yqq
+
 # Open Java JDK
-RUN sudo apt-get install -fyqq openjdk-8-jdk
+RUN sudo apt-get install -fyqq openjdk-8-jdk=8u212-*
 RUN echo JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" >> /etc/environment
 
 # Oracle Java JDK by webupd8team
@@ -26,3 +29,9 @@ RUN echo "source /etc/environment" >> /etc/bash.bashrc
 # Troca o Java Default
 # sudo update-alternatives --config java
 # sudo update-alternatives --config javac
+
+# Clean environment
+RUN sudo apt-get install -fyqq
+RUN sudo apt-get autoremove -yqq
+# RUN sudo apt-get clean -yqq
+RUN sudo apt-get autoclean -yqq
